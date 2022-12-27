@@ -238,9 +238,14 @@ end)
 -- When close window is clicked
 window:SetScript("OnHide", function(self)
 booleanIsOpen = false
+    if popup then
+        popup:Hide()
+    end
 end)
 
-
+if popup then
+    popup:Hide()
+end
 window:Hide()
 -- Fin de création de la fenetre
 
@@ -369,6 +374,9 @@ end
 function ToggleWindow()
     if window:IsShown() then
         window:Hide()
+        if popup then
+            popup:Hide()
+        end
     else
         window:Show()
     end
@@ -776,6 +784,10 @@ function popupResetRolls()
         popup:SetSize(350, 125)
         popup:SetPoint("CENTER", UIParent, "CENTER")
         popup:SetFrameStrata("DIALOG")
+        -- titre de la fenetre
+        popup.title = popup:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+        popup.title:SetPoint("TOP", 0, -5)
+        popup.title:SetText("Réinitialiser les lancés")
 
         -- Créez la liste déroulante
         local dropdown = MSA_DropDownMenu_Create("DropDownPlayerList", popup)
