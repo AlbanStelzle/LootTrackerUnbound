@@ -256,8 +256,6 @@ function ShiftListDown(list, listTitle, os)
         offset = os or 0 + yOfs
     end
     for _, child in ipairs(list) do
-        print("offset SLD: "..offset)
-
         child:SetPoint("TOPLEFT", list, "TOPLEFT", 0, offset)
             offset = offset - child:GetHeight()
     end
@@ -276,8 +274,6 @@ function ShiftListUp(list, listTitle, os)
         offset = os or 0 - yOfs
     end
     for _, child in ipairs(list) do
-        print("offset SLU: "..offset)
-
         child:SetPoint("TOPLEFT", list, "TOPLEFT", 0, offset)
         offset = offset + child:GetHeight()
     end
@@ -285,7 +281,6 @@ function ShiftListUp(list, listTitle, os)
 end
 function deleteButtonHandler(author, posText,posButton)
     return function(self, link, text, button)
-        print(author,posText,posButton)
         resetRollPlayer(author, self, posText,posButton)
     end
 end
@@ -300,10 +295,8 @@ function AddLineToListAndShiftOthers(list, lineText,ListNb,author)
     icon:SetNormalTexture("Interface\\Buttons\\UI-GroupLoot-Pass-Up")
     icon:SetSize(15, 15)
     icon:SetPoint("LEFT", fontString, "RIGHT")
-    print("avant : "..#list)
 
     table.insert(list, fontString)
-    print("après : "..#list)
     table.insert(listsOrderText,#list)
     table.insert(listsButton,icon)
 
@@ -333,7 +326,6 @@ end
 function RemoveAllLinesFromListAndShiftOthers(list,listNb)
     -- Supprimer tous les widgets enfants de la liste (hors titre de liste)
     for _,val in ipairs(list) do
-        print("val.title :".. val:GetName())
 
         for i = 2, #val, 1 do
             val[i]:Hide()
@@ -360,7 +352,6 @@ end
 function RemoveLineFromListAndShiftOthers(list,listNb,posText,posButton)
     list[posText]:Hide()
     list[posText] = nil
-    print("posText :".. posText)
     listsButton[posButton]:Hide()
     listsButton[posButton] = nil
     -- Déplacer les widgets enfants des autres listes vers le haut
@@ -756,7 +747,6 @@ end
 
  function OnConfirmPopupCancel()
     -- Exécutez l'action souhaitée lorsque l'utilisateur clique sur "Annuler"
-     print("Annuler")
      StaticPopup_Hide("CONFIRM_ACTION")
      globalBoolean = false
      return false
@@ -795,7 +785,6 @@ function popupResetRolls()
             info_init.text = "Sélectionnez un joueur"
             info_init.value = 0
             info_init.func = function(self)
-                print(self.value)
                 MSA_DropDownMenu_SetSelectedValue(dropdown, info_init.value)
             end
             MSA_DropDownMenu_AddButton(info_init)
@@ -804,15 +793,10 @@ function popupResetRolls()
                 info.text = player["name"]
                 info.value = player["name"]
                 info.func = function(self)
-                    print(self.value)
                     MSA_DropDownMenu_SetSelectedValue(dropdown, self.value)
-                end
-                for i,v in pairs(info) do
-                    print(i,v)
                 end
                 MSA_DropDownMenu_AddButton(info)
             end
-           -- print("selected value : "..MSA_DropDownMenu_GetSelectedValue(dropdown))
 
         end
         MSA_DropDownMenu_Initialize(dropdown, InitializeDropDownPlayerList)
