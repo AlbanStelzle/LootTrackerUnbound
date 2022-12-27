@@ -1,0 +1,4 @@
+Lib/**
+.release/
+*.out
+lcov.info

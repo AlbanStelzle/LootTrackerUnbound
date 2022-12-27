@@ -1,0 +1,5 @@
+package-as: LibClassicSpecs
+enable-nolib-creation: no
+
+externals:
+  Lib/LibStub: svn://svn.wowace.com/wow/libstub/mainline/tags/1.0

@@ -1,0 +1,12 @@
+## Interface: 80000
+## Title: LootTrackerUnbound
+## Notes: Addon qui gère les butins sur les boss de raids
+## Author: Xin4rius
+## Version: 1.0
+## SavedVariables: LootTrackerUnboundDB,
+## SavedVariablesPerCharacter: LootTrackerUnbound_LootsDB, LootTrackerUnbound_SessionHistory
+# Fichiers de l'addon
+LibDBIcon-1.0\embeds.xml
+LootTrackerUnbound_config.lua
+IconClass.lua
+LootTrackerUnbound.lua

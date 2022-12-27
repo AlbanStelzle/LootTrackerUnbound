@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install and run Luacheck
+        run: |
+          sudo apt-get install luarocks
+          luarocks install --local luacheck
+          ~/.luarocks/bin/luacheck . --no-color -q
+
+      - name: Install and run busted
+        run: |
+          sudo apt-get install luarocks
+          luarocks install --local busted
+          luarocks install --local luacov
+          luarocks install --local luacov-reporter-lcov
+          curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -z
+          cd .release/LibClassicSpecs
+          ~/.luarocks/bin/busted --coverage --shuffle --output=plainTerminal .
+          ~/.luarocks/bin/luacov -r lcov LibClassicSpecs
+
+      - name: Upload to coveralls.io
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: .release/LibClassicSpecs/luacov.report.out
+
+      - name: Create Package
+        run: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -z
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+          WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: LibClassicSpecs
+          path: .release/

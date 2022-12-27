@@ -1,0 +1,27 @@
+
+<Ui>
+    <Frame name="LootTrackerUnboundWindow">
+        <!-- Titre de la fenêtre -->
+        <FontString name="Title" font="GameFontNormal" />
+        <!-- Liste déroulante des butins -->
+<Frame name="LootDropdown" inherits="UIDropDownMenuTemplate" />
+
+        <!-- Liste des joueurs ayant lancé les dés -->
+<FontString name="DiceRollersList" font="GameFontNormal" />
+
+        <!-- Bouton pour annoncer les butins -->
+<Button name="AnnounceLootButton" inherits="UIPanelButtonTemplate" />
+
+        <!-- Bouton pour distribuer le butin -->
+<Button name="DistributeLootButton" inherits="UIPanelButtonTemplate" />
+
+        <!-- Bouton pour réinitialiser les butins -->
+<Button name="ResetLootButton" inherits="UIPanelButtonTemplate" />
+
+        <!-- Bouton pour fermer la fenêtre -->
+<Button name="CloseButton" inherits="UIPanelButtonTemplate" />
+
+        <!-- Bouton pour annoncer le vainqueur -->
+<Button name="AnnounceWinnerButton" inherits="UIPanelButtonTemplate" />
+    </Frame>
+</Ui>

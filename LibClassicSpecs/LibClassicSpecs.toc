@@ -1,0 +1,14 @@
+## Interface: 11303
+## Title: Lib: ClassicSpecs
+## Notes: Restores the retail specialization info in Classic
+## Version: @project-version@
+## Author: Grehy-Arugal
+## X-Category: Library
+## X-Curse-Project-ID: 363313
+## X-WoWI-ID: 25508
+
+#@no-lib-strip@
+Lib/LibStub/LibStub.lua
+#@end-no-lib-strip@
+
+LibClassicSpecs.lua
