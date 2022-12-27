@@ -85,7 +85,7 @@ function LTU_Command(msg)
     elseif msg == "help" then
 
         print("LootTrackerUnbound Version 1.0.0 by Datyb")
-        print("LootTrackerUnbound: /ltu announe - Announce the winner")
+        print("LootTrackerUnbound: /ltu announce - Announce the winner")
         print("LootTrackerUnbound: /ltu loots - Announce the loots")
         print("LootTrackerUnbound: /ltu start - Start the roll")
         print("LootTrackerUnbound: /ltu resetroll <name> - Reset the roll of a player")
